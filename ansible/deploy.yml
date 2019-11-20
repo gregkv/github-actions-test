@@ -15,4 +15,4 @@
     - name: npm install
       command: "chdir={{ app_directory }} npm install"
     - name: pm2 reload
-      command: "pm2 reload"
+      command: "pm2 reload web-app"
