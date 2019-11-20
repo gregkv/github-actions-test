@@ -17,3 +17,9 @@ jobs:
       run: |
             python --version
             ansible --version
+            pwd
+            mkdir -p ~/.ssh
+            umask  077 ; echo  ${{ secrets.DEV_SERVER_SSH_KEY }} > ~/.ssh/id_rsa
+            cd ansible
+            pwd
+            ansible-playbook deploy-site.yml -i inventory --extra-vars "target=dev-web-server" --private-key=~/.ssh/id_rsa
