@@ -17,7 +17,7 @@ jobs:
     - name: Deploy
       run: |
             cd ansible
-            echo  ${{ secrets.DEV_SERVER_SSH_KEY }} > text.txt
+            echo "${{ secrets.DEV_SERVER_SSH_KEY }}" > text.txt
             pwd
             ls -la
             cat text.txt
