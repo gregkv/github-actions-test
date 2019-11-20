@@ -20,6 +20,5 @@ jobs:
             echo "${{ secrets.DEV_SERVER_SSH_KEY }}" > id_rsa
             pwd
             ls -la
-            cat text.txt
             ansible-playbook deploy.yml -i inventory --extra-vars "target=dev-web-server" --private-key=id_rsa
 
