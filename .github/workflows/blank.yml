@@ -19,5 +19,5 @@ jobs:
             cd ansible
             pwd
             ls -la
-            ansible-playbook deploy-site.yml -i inventory --extra-vars "target=dev-web-server" --private-key=~/.ssh/id_rsa
+            ansible-playbook deploy.yml -i inventory --extra-vars "target=dev-web-server" --private-key=~/.ssh/id_rsa
 
