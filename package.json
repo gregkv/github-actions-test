@@ -1,0 +1,22 @@
+{
+  "name": "test-app",
+  "version": "1.0.0",
+  "description": "Test repo to check github-actions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gregkv/github-actions-test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gregkv/github-actions-test/issues"
+  },
+  "homepage": "https://github.com/gregkv/github-actions-test#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
