@@ -9,10 +9,23 @@
         recursive: yes
         rsync_opts:
           - "--exclude=.*"
-          - "--exclude=README.md"
           - "--exclude=npm_modules"
           - "--exclude=ansible"
     - name: npm install
-      command: "chdir={{ app_directory }} npm install"
-    - name: pm2 reload
-      command: "pm2 reload web-app"
+      command: "npm install"
+      args:
+        chdir: "{{ app_directory }}"
+    - name: pm2 start
+      command: "pm2 start {{ pm2_config_file }}"
+      args:
+        chdir: "{{ app_directory }}"
+    - name: Create .deploy_stats
+      copy:
+        dest: "{{ app_directory }}/.deploy_stats"
+        content: |
+          DATE:           {{ lookup('pipe','date +%Y-%m-%d-%H-%M-%S') }}
+          GITHUB_SHA:     {{ lookup('env','GITHUB_SHA') }}
+          GITHUB_REF:     {{ lookup('env','GITHUB_REF') }}
+          GITHUB_ACTOR:   {{ lookup('env','GITHUB_ACTOR') }}
+          GITHUB_ACTIONS: {{ lookup('env','GITHUB_ACTIONS') }}
+      ignore_errors: yes
