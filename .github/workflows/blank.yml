@@ -13,10 +13,11 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: 3.6
-    - name: Checkout
-      uses: actions/checkout@v1
+    - uses: actions/checkout@v1
+    - name: Deploy
       run: |
             cd ansible
             pwd
+            ls -la
             ansible-playbook deploy-site.yml -i inventory --extra-vars "target=dev-web-server" --private-key=~/.ssh/id_rsa
 
