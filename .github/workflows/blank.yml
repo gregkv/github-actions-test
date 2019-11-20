@@ -4,22 +4,13 @@ on:
   push:
     branches:
       - develop
-      - master
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    needs: build
     steps:
-    - name: Set up Python 3
-      uses: actions/setup-python@v1
-      with:
-        python-version: 3.6
-    - uses: actions/checkout@v1
-    - name: Deploy
-      run: |
-            cd ansible
-            echo "${{ secrets.DEV_SERVER_SSH_KEY }}" > id_rsa
-            chmod 400 id_rsa
-            pwd
-            ls -la
-            ansible-playbook deploy.yml -i inventory --extra-vars "target=dev-web-server" --private-key=id_rsa
+      - uses: actions/checkout@v1
+      - uses: ./.github/actions/ansible
+        env:
+          DEV_SERVER_SSH_KEY: ${{ secrets.DEV_SERVER_SSH_KEY }}
 
