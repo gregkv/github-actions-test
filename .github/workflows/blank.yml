@@ -9,7 +9,11 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: Run a multi-line script
+    - name: Set up Python 3
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.6
+    - name: Install dependencies
       run: |
-        pip3 install ansible
+        pip install ansible
         apt-get update && apt-get install -y rsync
