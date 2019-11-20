@@ -1,6 +1,6 @@
 {
   "apps" : [{
-    "name" : "web-app",
+    "name" : "fixii-web-app",
     "script": "npm",
     "args" : "start"
   }]
