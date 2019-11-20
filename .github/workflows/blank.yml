@@ -13,13 +13,18 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: 3.6
-    - name: Install dependencies
+    - name: Prepare for deploy
       run: |
             python --version
             ansible --version
-            pwd
+            echo 'making dir'
             mkdir -p ~/.ssh
+            echo 'setting ssh key'
             umask  077 ; echo  ${{ secrets.DEV_SERVER_SSH_KEY }} > ~/.ssh/id_rsa
+    - name: Checkout
+      uses: actions/checkout@v1
+    - name: Deploy
+      run: |
             cd ansible
-            pwd
             ansible-playbook deploy-site.yml -i inventory --extra-vars "target=dev-web-server" --private-key=~/.ssh/id_rsa
+
