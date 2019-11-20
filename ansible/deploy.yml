@@ -1,0 +1,16 @@
+- hosts: "{{ target }}"
+  gather_facts: no
+  tasks:
+    - name: Copy Files
+      synchronize:
+        src: "{{ playbook_dir }}/../."
+        dest: "{{ app_directory }}"
+        delete: yes
+        recursive: yes
+        rsync_opts:
+          - "--exclude=.*"
+          - "--exclude=README.md"
+          - "--exclude=npm_modules"
+          - "--exclude=ansible"
+    - name: npm install
+      command: "chdir={{ app_directory }} npm install"
