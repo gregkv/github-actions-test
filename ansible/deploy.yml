@@ -23,7 +23,7 @@
       copy:
         dest: "{{ app_directory }}/.deploy_stats"
         content: |
-          DATE:           {{ lookup('pipe','date +%Y-%m-%d-%H-%M-%S') }}
+          DATE:           {{ lookup('pipe','date +%Y-%m-%d %H:%M:%S') }}
           GITHUB_SHA:     {{ lookup('env','GITHUB_SHA') }}
           GITHUB_REF:     {{ lookup('env','GITHUB_REF') }}
           GITHUB_ACTOR:   {{ lookup('env','GITHUB_ACTOR') }}
