@@ -20,7 +20,9 @@ jobs:
             echo 'making dir'
             mkdir -p ~/.ssh
             echo 'setting ssh key'
-            umask  077 ; echo  ${{ secrets.DEV_SERVER_SSH_KEY }} > ~/.ssh/id_rsa
+            echo ${{ secrets.DEV_SERVER_SSH_KEY }} > ~/.ssh/id_rsa
+            echo 'updating ssh key chmod'
+            chmod 400 ~/.ssh/id_rsa
     - name: Checkout
       uses: actions/checkout@v1
     - name: Deploy
